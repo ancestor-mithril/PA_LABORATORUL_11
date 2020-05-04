@@ -3,7 +3,7 @@ UAIC_FII_PA_LAB_11
 
 
 
-##Compulsory {
+## Compulsory {
 * Create a Spring Boot project containing the REST services for comunicating with the database.
     * Aceasta a fost creata prin folosirea : https://start.spring.io
     * a fost selectat maven, Java, si SpringBoot 2.2.6
@@ -54,5 +54,5 @@ UAIC_FII_PA_LAB_11
     * dupa cum se observa sunt puse requesturile prin POSTMAN
     * prin browser se poate testa GET si POST daca se folosesc formulare
 
-##}
+## }
 
