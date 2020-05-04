@@ -14,7 +14,7 @@ UAIC_FII_PA_LAB_11
     * s-a rulat si s-a observat ca merge
 * Create the classes Game and Player.
     * aceste clase exista in pachetul *Game*
-    * nu contin decat getter2, setteri, constructori si metode ajutatoare pentru adaugarea unui element intr-o lista, stergerea unui element dintr-o lista si gasirea unui element dintr-o lista
+    * nu contin decat getteri, setteri, constructori si metode ajutatoare pentru adaugarea unui element intr-o lista, stergerea unui element dintr-o lista si gasirea unui element dintr-o lista
 
 * Create a REST controller containing methods for:
     * obtaining the list of the players, via a HTTP GET request.
