@@ -3,6 +3,8 @@ package com.example.demo;
 
 import com.example.demo.game.Game;
 import com.example.demo.game.Player;
+import com.example.demo.game.PlayerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/game")
 public class GameController {
+
+    @Autowired
+    PlayerService service;
+
     private static int id=0;
     private final Game game=new Game();
 
@@ -19,8 +25,7 @@ public class GameController {
      * constructor in care initializam 2 playeri
      */
     public GameController(){
-        game.addPlayer(new Player(id++, "Player1"));
-        game.addPlayer(new Player(id++, "Player2"));
+
     }
 
     /**
@@ -28,8 +33,17 @@ public class GameController {
      * @return
      */
     @GetMapping("/players")
-    public List<Player> getPlayers() {
+    public List<Player> getProducts() {
         return game.getPlayerList();
+    }
+
+    /**
+     * gets all the players from database
+     * @return
+     */
+    @GetMapping("/players_from_database")
+    public List<Player> getProductsFromDatabase() {
+        return service.getAll();
     }
 
     /**
@@ -58,8 +72,10 @@ public class GameController {
      */
     @PostMapping
     public int addPlayer(@RequestParam String name){
-        game.getPlayerList().add(new Player(id++, name));
-        return id;
+        Player player=new Player(id++, name);
+        game.getPlayerList().add(player);
+        service.save(player);
+        return player.getId();
     }
 
     /**
@@ -70,9 +86,10 @@ public class GameController {
     @PostMapping(value = "/obj", consumes="application/json")
     public ResponseEntity<String>
     addPlayer(@RequestBody Player player) {
+        service.save(player);
         game.getPlayerList().add(player);
         return new ResponseEntity<>(
-                "Product created successfully", HttpStatus.CREATED);
+                "Player created successfully", HttpStatus.CREATED);
     }
 
     /**

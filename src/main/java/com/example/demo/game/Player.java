@@ -1,8 +1,20 @@
 package com.example.demo.game;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Player {
+    @Id
+    @GeneratedValue
     int id;
     String name;
+
+    public Player(){
+
+    }
 
     /**
      * constructor in care instantiem id-ul si numele

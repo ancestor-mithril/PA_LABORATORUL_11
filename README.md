@@ -4,7 +4,7 @@ UAIC_FII_PA_LAB_11
 
 
 ## Compulsory {
-* pe moment nu s-a realizat conectarea la baze de date, va fi facuta in viitor
+* baza de date folosita este H2, care este in-memory, deci nu este nevoied e videoclip pentru aratarea ei
 * Create a Spring Boot project containing the REST services for comunicating with the database.
     * Aceasta a fost creata prin folosirea : https://start.spring.io
     * a fost selectat maven, Java, si SpringBoot 2.2.6
@@ -13,9 +13,12 @@ UAIC_FII_PA_LAB_11
     * s-a modificat in pom.xml, adaugandu-se un **-web** la linia de mai jos:
         * 			<artifactId>spring-boot-starter-web</artifactId>
     * s-a rulat si s-a observat ca merge
+    * s-au pus dependintele pentru h2
+    * s-a modificat fisierul application.properties pentru conexiunea cu h2
 * Create the classes Game and Player.
     * aceste clase exista in pachetul *Game*
     * nu contin decat getteri, setteri, constructori si metode ajutatoare pentru adaugarea unui element intr-o lista, stergerea unui element dintr-o lista si gasirea unui element dintr-o lista
+    * in plus Player este un Entity in baza de date h2
 
 * Create a REST controller containing methods for:
     * obtaining the list of the players, via a HTTP GET request.
@@ -27,11 +30,13 @@ UAIC_FII_PA_LAB_11
         * aceasta cale intoarce toti playerii, ceea ce se cere in cerinta, astfel:
         ```$xslt
         @GetMapping("/players")
-            public List<Player> getProducts() {
-                return game.getPlayerList();
-            }
+        public List<Player> getProducts() {
+            return game.getPlayerList();
+        }
         ```
         * celelalte cai nu sunt necesare
+        * pentru a intoarce playerii din baza de date se foloseste
+        ```@GetMapping("/players_from_database")```
     * adding a new player in the database, via a HTTP POST request.
         * http://localhost:8080/game?name=Player3 (Postman Post)
         * sau deschiderea unui fisier . html care contine urmatoarele:
@@ -44,6 +49,7 @@ UAIC_FII_PA_LAB_11
         </bodY> </html>
         ```
         * se adauga un player nou, codul de la post este similar cu cel din curs, slide-urile 18
+        * in plus se adauga playerul nou in baza de date h2
     * modifying the name of a player, via a HTTP PUT request.
         * http://localhost:8080/game/1?name=Player100 (Postman put)
         * similar cu slide-urile 19 din curs, se cauta un player cu id-ul din ruta /game/{id}
